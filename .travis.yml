@@ -1,12 +1,15 @@
 language: node_js
 node_js:
-  - 10  # 使用 nodejs LTS v10
+  - 14  # 使用 nodejs LTS v10
 branches:
   only:
     - main # 只监控 source 的 branch
 cache:
-  directories:
-    - node_modules # 缓存 node_modules 加快构建速度
+  npm
+  # directories:
+  #   - node_modules # 缓存 node_modules 加快构建速度
+install:
+  - yarn
 before_script: ## 根据你所用的主题和自定义的不同，这里会有所不同
   # - npm install -g hexo-cli # 在 CI 环境内安装 Hexo
   # - mkdir themes # 由于我们没有将 themes/ 上传，所以我们需要新建一个
@@ -18,6 +21,7 @@ before_script: ## 根据你所用的主题和自定义的不同，这里会有�
   # - cp _config.theme.yml themes/suka/_config.yml # 将主题的配置文件放回原处
   # - npm install # 在根目录安装站点需要的依赖
 script:
+  - hexo clean
   - hexo generate # generate static files
 deploy: # 根据个人情况，这里会有所不同
   provider: pages
