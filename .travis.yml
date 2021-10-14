@@ -6,8 +6,6 @@ branches:
     - main # 只监控 main 的 branch
 cache:
   npm
-  directories:
-    - node_modules # 缓存 node_modules 加快构建速度
 install:
   - yarn
 script:
